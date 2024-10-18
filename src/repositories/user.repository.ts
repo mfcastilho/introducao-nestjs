@@ -11,4 +11,14 @@ export class UserRepository {
     return await this.prisma.user.findMany();
   }
 
+  async findByPk(id: number) {
+    return await this.prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      }
+    });
+  }
 }
