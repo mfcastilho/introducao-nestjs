@@ -21,4 +21,28 @@ export class UserRepository {
       }
     });
   }
+
+  async findOne(key: string, value: string) {
+    if (key === 'email') {
+      return await this.prisma.user.findFirst({
+        where: { email: value },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        }
+      });
+    }
+
+    if (key === 'id') {
+      return await this.prisma.user.findFirst({
+        where: { id: Number(value) },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        }
+      });
+    }
+  }
 }
