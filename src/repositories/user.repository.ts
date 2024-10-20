@@ -45,4 +45,20 @@ export class UserRepository {
       });
     }
   }
+
+
+  async create({ name, email, password }: CreateUserDTO) {
+    return await this.prisma.user.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      }
+    });
+  }
 }
