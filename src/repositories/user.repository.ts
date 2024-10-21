@@ -61,4 +61,20 @@ export class UserRepository {
       }
     });
   }
+
+  async update(id: number, { name, email, password }: UpdatePutUserDTO) {
+    return await this.prisma.user.update({
+      where: { id },
+      data: {
+        name,
+        email,
+        password
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      }
+    });
+  }
 }
