@@ -77,4 +77,15 @@ export class UserRepository {
       }
     });
   }
+
+  async delete(id: number) {
+    return await this.prisma.user.delete({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      }
+    });
+  }
 }
